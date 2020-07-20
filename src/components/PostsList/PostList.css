@@ -1,0 +1,24 @@
+.posts-list {
+  padding: 0;
+  list-style: none;
+}
+
+.posts-list__item {
+  margin-bottom: 50px;
+
+  border: 2px solid black;
+  background-color: #dae64a;
+}
+
+.filter__input {
+  width: 70vw;
+  margin: 0 auto;
+  display: block;
+
+  height: 50px;
+  border: 2px solid black;
+  border-radius: 15px;
+
+  text-align: center;
+
+}
