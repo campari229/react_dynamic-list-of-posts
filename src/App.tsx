@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
-import { getPost, getUsers, getComments } from './api';
+import {
+  getData,
+  PostsURL,
+  UsersURL,
+  CommentsURL,
+} from './api';
+
 import {
   FullPost,
   Post,
@@ -15,9 +21,9 @@ const App: React.FC = () => {
 
   const getFullPosts = async () => {
     switchIsLoading(true);
-    const users: User[] = await getUsers();
-    const posts: Post[] = await getPost();
-    const comments: CommentInterface[] = await getComments();
+    const users: User[] = await getData(UsersURL);
+    const posts: Post[] = await getData(PostsURL);
+    const comments: CommentInterface[] = await getData(CommentsURL);
     const preperedPosts: FullPost[] = posts.map((post: Post) => ({
       ...post,
       user: users.find((user: User) => user.id === post.userId) as unknown as User,
