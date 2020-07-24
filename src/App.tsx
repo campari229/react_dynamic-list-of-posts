@@ -21,13 +21,13 @@ const App: React.FC = () => {
 
   const getFullPosts = async () => {
     switchIsLoading(true);
-    const users: User[] = await getData(UsersURL);
-    const posts: Post[] = await getData(PostsURL);
-    const comments: CommentInterface[] = await getData(CommentsURL);
-    const preperedPosts: FullPost[] = posts.map((post: Post) => ({
+    const users = await getData<User[]>(UsersURL);
+    const posts = await getData<Post[]>(PostsURL);
+    const comments = await getData<CommentInterface[]>(CommentsURL);
+    const preperedPosts = posts.map((post) => ({
       ...post,
-      user: users.find((user: User) => user.id === post.userId) as unknown as User,
-      comments: comments.filter((comment: CommentInterface) => comment.postId === post.id),
+      user: users.find((user) => user.id === post.userId) as unknown as User,
+      comments: comments.filter((comment) => comment.postId === post.id),
     }));
 
     switchIsLoading(false);
