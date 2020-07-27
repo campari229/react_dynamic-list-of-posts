@@ -17,7 +17,7 @@ import { PostsList } from './components/PostsList/PostsList';
 
 const App: React.FC = () => {
   const [fullPosts, setFullPosts] = useState<FullPost[]>([]);
-  const [isLoading, switchIsLoading] = useState<boolean>(false);
+  const [isLoading, switchIsLoading] = useState(false);
 
   const getFullPosts = async () => {
     switchIsLoading(true);
@@ -26,7 +26,7 @@ const App: React.FC = () => {
     const comments = await getData<CommentInterface[]>(CommentsURL);
     const preperedPosts = posts.map((post) => ({
       ...post,
-      user: users.find((user) => user.id === post.userId) as unknown as User,
+      user: users.find((user) => user.id === post.userId) as User,
       comments: comments.filter((comment) => comment.postId === post.id),
     }));
 
